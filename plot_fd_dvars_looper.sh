@@ -18,11 +18,11 @@ do
     plotspath=$preprocpath/PLOTS
     mkdir $plotspath
     cd $preprocpath
-    cp rest_motion_fd.txt $plotspath #>> $plotspath/plot_motion.sh
-    cp spp.rest/rest_sm_dvars.txt $plotspath #>> $plotspath/plot_motion.sh
-    cp spp.rest/rest_noise_dvars.txt $plotspath #>> $plotspath/plot_motion.sh
-    cp spp.rest/rest_wds_dvars.txt $plotspath #>> $plotspath/plot_motion.sh
-    cd $plotspath #>> $plotspath/plot_motion.sh
+    cp rest_motion_fd.txt $plotspath >> $plotspath/plot_motion.sh
+    cp spp.rest/rest_sm_dvars.txt $plotspath >> $plotspath/plot_motion.sh
+    cp spp.rest/rest_noise_dvars.txt $plotspath >> $plotspath/plot_motion.sh
+    cp spp.rest/rest_wds_dvars.txt $plotspath >> $plotspath/plot_motion.sh
+    cd $plotspath >> $plotspath/plot_motion.sh
 
     # format plot_fd_dvars.py's options
     
