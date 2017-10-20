@@ -25,34 +25,44 @@ do
 
 	# create symbolic links to anat and rest in preprocpath
 	echo cp $restpath/rest.nii.gz $preprocpath >> $preprocpath/${subid}_preproc.sh
-	cp $restpath/rest.nii.gz $preprocpath
+	#cp $restpath/rest.nii.gz $preprocpath
 	echo cp $anatpath/mprage.nii.gz $preprocpath >> $preprocpath/${subid}_preproc.sh
-	cp $anatpath/mprage.nii.gz $preprocpath
+	#cp $anatpath/mprage.nii.gz $preprocpath
+	
 	# cd into subject's directory
 	echo cd $preprocpath >> $preprocpath/${subid}_preproc.sh
-	cd $preprocpath
+	#cd $preprocpath
+	
 	# make sure -space field in the header is set to ORIG
 	echo 3drefit -space ORIG $preprocpath/mprage.nii.gz >> $preprocpath/${subid}_preproc.sh
-	3drefit -space ORIG $preprocpath/mprage.nii.gz
+	#3drefit -space ORIG $preprocpath/mprage.nii.gz
 	echo 3drefit -space ORIG $preprocpath/rest.nii.gz >> $preprocpath/${subid}_preproc.sh
-	3drefit -space ORIG $preprocpath/rest.nii.gz
+	#3drefit -space ORIG $preprocpath/rest.nii.gz
+	
 	# call speedyppX.py
 	echo python ~/rsfmri-master/speedyppX.py -d rest.nii.gz -a mprage.nii.gz $speedyoptions >> $preprocpath/${subid}_preproc.sh
-	python ~/rsfmri-master/speedyppX.py -d rest.nii.gz -a mprage.nii.gz $speedyoptions 
+	#python ~/rsfmri-master/speedyppX.py -d rest.nii.gz -a mprage.nii.gz $speedyoptions 
+	
 	# compute framewise displacement with summary statistics
-	echo python3 ~/rsfmri-master/fd.py -d rest_motion.1D >> $preprocpath/${subid}_preproc.sh
-	python3 ~/rsfmri-master/fd.py -d rest_motion.1D
+	echo python ~/rsfmri-master/fd.py -d rest_motion.1D >> $preprocpath/${subid}_preproc.sh
+	#python3 ~/rsfmri-master/fd.py -d rest_motion.1D
+	
 	#cd into spp.rest
-	echo cd spp.rest
-	cd spp.rest
+	echo cd spp.rest >> $preprocpath/${subid}_preproc.sh
+	#cd spp.rest
+	
 	# compute DVARS
-	echo python3 ~/rsfmri-master/dvars_se.py -d rest_sm.nii.gz >> $preprocpath/${subid}_preproc.sh
-	python3 ~/rsfmri-master/dvars_se.py -d rest_sm.nii.gz
-	echo python3 ~/rsfmri-master/dvars_se.py -d rest_noise.nii.gz >> $preprocpath/${subid}_preproc.sh
-	python3 ~/rsfmri-master/dvars_se.py -d rest_noise.nii.gz
-	echo python3 ~/rsfmri-master/dvars_se.py -d rest_wds.nii.gz >> $preprocpath/${subid}_preproc.sh
-	python3 ~/rsfmri-master/dvars_se.py -d rest_wds.nii.gz
+	echo python ~/rsfmri-master/dvars_se.py -d rest_sm.nii.gz >> $preprocpath/${subid}_preproc.sh
+	#python3 ~/rsfmri-master/dvars_se.py -d rest_sm.nii.gz
+	
+	echo python ~/rsfmri-master/dvars_se.py -d rest_noise.nii.gz >> $preprocpath/${subid}_preproc.sh
+	#python3 ~/rsfmri-master/dvars_se.py -d rest_noise.nii.gz
+	
+	echo python ~/rsfmri-master/dvars_se.py -d rest_wds.nii.gz >> $preprocpath/${subid}_preproc.sh
+	#python3 ~/rsfmri-master/dvars_se.py -d rest_wds.nii.gz
+	
 	# run complete preprocessing batch script
-	#bash $preprocpath/${subid}_preproc.sh
+	bash $preprocpath/${subid}_preproc.sh
+	
 	cd $rootpath
 done
