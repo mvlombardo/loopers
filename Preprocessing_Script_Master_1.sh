@@ -106,32 +106,7 @@ done
 
 #####################################################
 #####################################################
-
-#!/bin/bash
-#Remove unwanted images
-
-# loop over subjects
-for subid in $sublist
-do
-	# Path for each id
-	 subpath=$rootpath/$subid
-	 preprocpath=$subpath/session_1/preproc_1
-	 spprest=$preprocpath/spp.rest
-
-# remove files in preprocpath
-	files2remove="mprage*sppdo_at.nii.gz mprage_sppdo.nii.gz *.BRIK *.HEAD *_in*"
-	echo cd $preprocpath
-	cd $preprocpath
-	echo rm -Rf $files2remove
-	rm -Rf $preprocpath/$files2remove
-
-
-
-
-
-#subject id to find file
-####################################################
-##I cannot stress enough how important it is to write the list correctly! find is recursive and will probably delete whatever is in the rootpath if you don't!
+#Remove unwanted data
 
 # loop over subjects
 for subid in $sublist
@@ -152,7 +127,7 @@ do
 
 
 	# move files to keep from spp.rest
-	files2keep="*dvars.txt *fd.txt PLOTS"
+	files2keep="*dvars.txt *fd.txt *csv PLOTS"
 	echo cd $spprest
 	cd $spprest
 	echo mv $files2keep $preprocpath
