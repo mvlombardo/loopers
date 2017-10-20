@@ -24,9 +24,9 @@ do
 	mkdir $preprocpath
 
 	# create symbolic links to anat and rest in preprocpath
-	echo cp $restpath/rest.nii.gz $preprocpath >> $preprocpath/${subid}_preproc.sh
+	echo ln -s $restpath/rest.nii.gz $preprocpath >> $preprocpath/${subid}_preproc.sh
 	#cp $restpath/rest.nii.gz $preprocpath
-	echo cp $anatpath/mprage.nii.gz $preprocpath >> $preprocpath/${subid}_preproc.sh
+	echo ln -s $anatpath/mprage.nii.gz $preprocpath >> $preprocpath/${subid}_preproc.sh
 	#cp $anatpath/mprage.nii.gz $preprocpath
 	
 	# cd into subject's directory
