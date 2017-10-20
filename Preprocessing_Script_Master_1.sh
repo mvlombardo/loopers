@@ -115,8 +115,6 @@ do
 	 subpath=$rootpath/$subid
 	 preprocpath=$subpath/session_1/preproc_1
 	 spprest=$preprocpath/spp.rest
-	 #dontdelete="rest_pp.nii.gz, mprage_sppdo_atnl.nii.gz"
-	 #mkdir $preprocpath/shallnotdelete
 	
 	# remove files in preprocpath
 	files2remove="mprage*sppdo_at.nii.gz mprage_sppdo.nii.gz *.BRIK *.HEAD *_in*"
